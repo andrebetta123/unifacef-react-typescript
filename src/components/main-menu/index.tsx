@@ -3,18 +3,18 @@ import * as React from "react";
 import { inject, observer } from "mobx-react";
 
 import { Menu } from "semantic-ui-react";
-import NewRouterStoreAndre from "../../mobx/router.store";
+import NewRouterStore from "../../mobx/router.store";
 import { endpoints } from "../../routes/endpoints";
 
 interface Props {
-  router?: NewRouterStoreAndre;
+  router?: NewRouterStore;
 }
 
 @inject('router')
 @observer
 export default class MainMenu extends React.Component<Props> {
 
-  handleItemClickAndre = (_, { url }: any) => {
+  handleItemClick = (_, { url }: any) => {
     const { setHistory } = this.props.router!;
     return setHistory(url);
   }
@@ -30,7 +30,7 @@ export default class MainMenu extends React.Component<Props> {
                 key={index}
                 name={item.path?.toString()}
                 url={item.path!}
-                onClick={this.handleItemClickAndre}>
+                onClick={this.handleItemClick}>
                 {item.name}
               </Menu.Item>
             })}
