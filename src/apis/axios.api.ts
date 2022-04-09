@@ -1,0 +1,19 @@
+import { loadingOn, loadingOff } from "../components/loading";
+import axios from "axios";
+// import { config } from "process";
+
+axios.interceptors.request.use(async (config) => {
+    loadingOn();
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+})
+
+axios.interceptors.response.use(async (config) => {
+    loadingOff();
+    return config;
+  }, (error) => {
+    loadingOff();
+    return Promise.reject(error);
+  });
+  
