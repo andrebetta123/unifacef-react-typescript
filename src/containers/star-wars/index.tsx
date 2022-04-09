@@ -18,19 +18,18 @@ export default class StarWars extends React.Component<Props> {
     await buildFilms();
   }
 
-    // render(){
-    //     const openDetails = (id: number) => {
-    //         this.props.router.setHistory(`/star-wars/${id}`)
-    //     }
-    //     return ()
-    // }
-
+    
   render() {
 
    const { films } = this.props.starWars;
 
+   const openDetails = (id: number) => {
+    this.props.router.setHistory(`/star-wars/${id}`)
+}
+
     return (
-      <Container>
+    
+    <Container>
         <Grid divided='vertically'>
           <Grid.Row columns={2}>
             <Grid.Column>
@@ -43,10 +42,10 @@ export default class StarWars extends React.Component<Props> {
             </Grid.Column>
           </Grid.Row>
         </Grid>
-        <Card.Group itemsPerRow={2}>
+        <Card.Group itemsPerRow={7}>
           {films.map((film, index) => {
             return (
-              <Card key={index}>
+              <Card key={index} onClick={()=> openDetails(film.id)}>
                 <Image src={film.photo} wrapped ui={false} size='small' />
                 <Card.Content>
                   <Card.Meta>{film.title}</Card.Meta>
